@@ -115,10 +115,21 @@ class CompilationController extends AbstractController
 
     /**
      * @param Compilation $compilation
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/like/{compilation}", name="like")
      */
-    public function like(Compilation $compilation){
-        $this->getUser()->addLikedCompilation($compilation);
-        $compilation->addLike($this->getUser());
+    public function like(Compilation $compilation): Response
+    {
+        if(!$this->getUser()->isLiked($compilation)){
+            $this->getUser()->addLikedCompilation($compilation);
+            $compilation->addLike($this->getUser());
+        }else{
+            $this->getUser()->removeLikedCompilation($compilation);
+            $compilation->removeLike($this->getUser());
+        }
+
+        $this->getDoctrine()->getManager()->flush();
+
+        return $this->redirectToRoute('compilation_show', ['id' => $compilation->getId()]);
     }
 }

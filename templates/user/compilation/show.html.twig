@@ -5,4 +5,13 @@
 {% block body %}
     <h1>Compilation</h1>
     {{ compilation.title }}
+    <a href="{{ path('compilation_like', {compilation: compilation.id}) }}">
+        {%  for user in compilation.likes %}
+        {% if user.id is same as app.user.id %}
+            <ion-icon name="heart"></ion-icon>
+        {% endif %}
+        {% else %}
+            <ion-icon name="heart-outline"></ion-icon>
+        {% endfor %}
+    </a>
 {% endblock %}
