@@ -13,15 +13,15 @@ input{
 }
 
 .collection-container{
-  margin: 50px;
+  display: inline-flex;
+  justify-items: center;
   position: relative;
 }
 
-
 .card{
   position: absolute;
-  width: 6rem;
-  height: 8rem;
+  width: 10rem;
+  height: 13rem;
   border-radius: 10px;
 }
 
@@ -35,4 +35,8 @@ input{
 .collection .card-3{
   transform: rotate(20deg);
   background: #B0413E;
+}
+
+.card-title{
+  position: relative;
 }
