@@ -1,0 +1,12 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        products:
+            # alias qui nous permet d'accéder à nos images depuis le navigateur
+            uri_prefix: /images/products
+            # Chemin vers le dossier de stockage
+            upload_destination: '%upload_directory%'
+            delete_on_update: true
+            delete_on_remove: true
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
