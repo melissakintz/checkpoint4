@@ -14,4 +14,24 @@
             <ion-icon name="heart-outline"></ion-icon>
         {% endfor %}
     </a>
+    <!-- display pictures-->
+    {% for picture in compilation.pictures %}
+        <img src="{{ asset('uploads/'~picture ) }}">
+    {% endfor %}
+    <!-- ./display pictures-->
+
+
+    <!--display youtube -->
+    {% for youtube in compilation.youtubeLinks %}
+    {% for link in youtube %}
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    {% endfor %}
+    {% endfor %}
+    <!-- ./display youtube-->
+    <!--display spotify -->
+    {% for spotify in compilation.spotifyLinks %}
+        <iframe src="https://open.spotify.com/embed/track/{{ spotify }}?theme=0" width="20%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    {% endfor %}
+    <!-- ./display spotify-->
+
 {% endblock %}

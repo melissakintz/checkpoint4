@@ -24,7 +24,8 @@ class CompilationType extends AbstractType
             )
             ->add('spotify', TextType::class, [
                 'mapped' => false,
-                'label' => 'Liens spotify'
+                'label' => 'Liens spotify',
+                'required' => false
             ])
             ->add('description', TextType::class, [
                 'label' => 'Description'

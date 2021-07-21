@@ -25,4 +25,18 @@ class Extractor
 
         return $ytIds;
     }
+
+    public function extractSpotify(string $links): array
+    {
+        $liens = $this->toArray($links);
+
+        $spotifyIds = [];
+        foreach($liens as $link){
+            $array = explode('/', $link);
+            $id = explode('?', $array[4]);
+            $spotifyIds[] = $id[0];
+        }
+
+        return $spotifyIds;
+    }
 }

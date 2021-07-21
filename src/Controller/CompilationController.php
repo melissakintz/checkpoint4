@@ -47,7 +47,7 @@ class CompilationController extends AbstractController
             if(!empty($form->get('spotify')->getData()[1])) {
                 //explode spotify links to array
                 $spotifyLinks = $form->get('spotify')->getData();
-                $spotifyILinks = $extractor->toArray($spotifyLinks);
+                $spotifyILinks = $extractor->extractSpotify($spotifyLinks);
                 $compilation->setSpotifyLinks($spotifyILinks);
             }
 
@@ -77,7 +77,7 @@ class CompilationController extends AbstractController
             $entityManager->persist($compilation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('compilation/index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('compilation_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('user/compilation/new.html.twig', [
