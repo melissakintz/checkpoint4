@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Compilation index{% endblock %}
+
+{% block body %}
+    <h1>Compilation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>YoutubeLinks</th>
+                <th>SpotifyLinks</th>
+                <th>ApplemusicLinks</th>
+                <th>Description</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Private</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for compilation in compilations %}
+            <tr>
+                <td>{{ compilation.id }}</td>
+                <td>{{ compilation.youtubeLinks ? compilation.youtubeLinks|join(', ') : '' }}</td>
+                <td>{{ compilation.spotifyLinks ? compilation.spotifyLinks|join(', ') : '' }}</td>
+                <td>{{ compilation.applemusicLinks ? compilation.applemusicLinks|join(', ') : '' }}</td>
+                <td>{{ compilation.description }}</td>
+                <td>{{ compilation.title }}</td>
+                <td>{{ compilation.date ? compilation.date|date('Y-m-d') : '' }}</td>
+                <td>{{ compilation.private ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('compilation_show', {'id': compilation.id}) }}">show</a>
+                    <a href="{{ path('compilation_edit', {'id': compilation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('compilation_new') }}">Create new</a>
+{% endblock %}
