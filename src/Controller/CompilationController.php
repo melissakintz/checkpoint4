@@ -20,7 +20,7 @@ class CompilationController extends AbstractController
      */
     public function index(CompilationRepository $compilationRepository): Response
     {
-        return $this->render('compilation/index.html.twig', [
+        return $this->render('user/compilation/index.html.twig', [
             'compilations' => $compilationRepository->findAll(),
         ]);
     }
@@ -42,7 +42,7 @@ class CompilationController extends AbstractController
             return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('compilation/new.html.twig', [
+        return $this->renderForm('user/compilation/new.html.twig', [
             'compilation' => $compilation,
             'form' => $form,
         ]);
@@ -53,7 +53,7 @@ class CompilationController extends AbstractController
      */
     public function show(Compilation $compilation): Response
     {
-        return $this->render('compilation/show.html.twig', [
+        return $this->render('user/compilation/show.html.twig', [
             'compilation' => $compilation,
         ]);
     }
@@ -72,7 +72,7 @@ class CompilationController extends AbstractController
             return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('compilation/edit.html.twig', [
+        return $this->renderForm('user/compilation/edit.html.twig', [
             'compilation' => $compilation,
             'form' => $form,
         ]);

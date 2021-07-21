@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Edit Compilation</h1>
 
-    {{ include('compilation/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('user/compilation/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('compilation_index') }}">back to list</a>
 
-    {{ include('compilation/_delete_form.html.twig') }}
+    {{ include('user/compilation/_delete_form.html.twig') }}
 {% endblock %}
