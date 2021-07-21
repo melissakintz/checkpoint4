@@ -59,6 +59,12 @@ class Compilation
      */
     private $creator;
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $pictures = [];
+
+
     public function __construct()
     {
         $this->likes = new ArrayCollection();
@@ -176,6 +182,18 @@ class Compilation
     public function setCreator(?User $creator): self
     {
         $this->creator = $creator;
+
+        return $this;
+    }
+
+    public function getPictures(): ?array
+    {
+        return $this->pictures;
+    }
+
+    public function setPictures(?array $pictures): self
+    {
+        $this->pictures = $pictures;
 
         return $this;
     }

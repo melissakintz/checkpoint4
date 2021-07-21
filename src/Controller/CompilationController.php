@@ -51,6 +51,23 @@ class CompilationController extends AbstractController
                 $compilation->setSpotifyLinks($spotifyILinks);
             }
 
+            //get image
+            if(!empty($form->get('pictures')->getData()[1])){
+                $pictures = $form->get('pictures')->getData();
+                $picturesName = [];
+                foreach($pictures as $picture){
+                    // On génère un nouveau nom de fichier
+                    $fichier = md5(uniqid()).'.'.$picture->guessExtension();
+                    // On copie le fichier dans le dossier uploads
+                    $picture->move(
+                        $this->getParameter('upload_directory'),
+                        $fichier
+                    );
+                    $picturesName[] = $fichier;
+                }
+                $compilation->setPictures($picturesName);
+            }
+
             $date = new \DateTime('now');
             $compilation->setDate($date);
             $compilation->setCreator($this->getUser());

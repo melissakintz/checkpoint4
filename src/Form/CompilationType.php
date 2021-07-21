@@ -5,9 +5,11 @@ namespace App\Form;
 use App\Entity\Compilation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class CompilationType extends AbstractType
 {
@@ -29,6 +31,12 @@ class CompilationType extends AbstractType
             ])
             ->add('title', TextType::class, [
                 'label' => 'Titre du mood board'
+            ])
+            ->add('pictures', FileType::class, [
+                'mapped' => false,
+                'required' =>false,
+                'multiple' => true,
+                'label' => false
             ])
             ->add('private', ChoiceType::class, [
                 'label' => 'Privé ?',
