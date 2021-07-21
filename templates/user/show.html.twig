@@ -22,8 +22,11 @@
         </section>
 
         <section class="compilations">
+            <p>Vos mood board</p>
             {% for compilation in user.compilations %}
-                compilation display
+                <a href="{{ path('compilation_show', {id: compilation.id}) }}">
+                    {{ compilation.title }} / {{ compilation.description }}
+                </a>
             {% endfor %}
         </section>
 

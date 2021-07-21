@@ -41,15 +41,15 @@ class CompilationController extends AbstractController
                 //extract id from youtube video
                 $youtubeLinks = $form->get('youtube')->getData();
                 $ytIds[] = $extractor->extractYoutube($youtubeLinks);
-
                 $compilation->setYoutubeLinks($ytIds);
             }
 
-            //explode spotify links to array
-            $spotifyLinks = $form->get('spotify')->getData();
-            $spotifyILinks = $extractor->toArray($spotifyLinks);
-
-            $compilation->setSpotifyLinks($spotifyILinks);
+            if(!empty($form->get('spotify')->getData()[1])) {
+                //explode spotify links to array
+                $spotifyLinks = $form->get('spotify')->getData();
+                $spotifyILinks = $extractor->toArray($spotifyLinks);
+                $compilation->setSpotifyLinks($spotifyILinks);
+            }
 
             $date = new \DateTime('now');
             $compilation->setDate($date);
@@ -60,7 +60,7 @@ class CompilationController extends AbstractController
             $entityManager->persist($compilation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('compilation/index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('user/compilation/new.html.twig', [
@@ -111,5 +111,14 @@ class CompilationController extends AbstractController
         }
 
         return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @param Compilation $compilation
+     * @Route("/like/{compilation}", name="like")
+     */
+    public function like(Compilation $compilation){
+        $this->getUser()->addLikedCompilation($compilation);
+        $compilation->addLike($this->getUser());
     }
 }
