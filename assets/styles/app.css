@@ -1,14 +1,6 @@
+@import "global.scss";
 @import "home.scss";
 @import "nav.scss";
 @import "profil.scss";
 @import "sidenav.scss";
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-input{
-    width: 100%;
-}
+@import "gallery.scss";

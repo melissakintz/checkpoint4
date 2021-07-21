@@ -3,35 +3,49 @@
 {% block title %}Compilation{% endblock %}
 
 {% block body %}
-    <h1>Compilation</h1>
-    {{ compilation.title }}
-    <a href="{{ path('compilation_like', {compilation: compilation.id}) }}">
-        {%  for user in compilation.likes %}
-        {% if user.id is same as app.user.id %}
-            <ion-icon name="heart"></ion-icon>
-        {% endif %}
-        {% else %}
-            <ion-icon name="heart-outline"></ion-icon>
-        {% endfor %}
-    </a>
-    <!-- display pictures-->
-    {% for picture in compilation.pictures %}
-        <img src="{{ asset('uploads/'~picture ) }}">
-    {% endfor %}
-    <!-- ./display pictures-->
+    {% include './components/_sidenav.thml.twig' %}
+    <div class="contain">
+        <section class="compilation-header">
+            <div class="compilation-title">
+                {{ compilation.title }}
+            </div>
+            <div class="compilation-description">
+                {{ compilation.description }}
+            </div>
 
+            <div class="like">
+                <a href="{{ path('compilation_like', {compilation: compilation.id}) }}">
+                    {%  for user in compilation.likes %}
+                        {% if user.id is same as app.user.id %}
+                            <ion-icon name="heart"></ion-icon>
+                        {% endif %}
+                    {% else %}
+                        <ion-icon name="heart-outline"></ion-icon>
+                    {% endfor %}
+                </a>
+            </div>
+        </section>
 
-    <!--display youtube -->
-    {% for youtube in compilation.youtubeLinks %}
-    {% for link in youtube %}
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    {% endfor %}
-    {% endfor %}
-    <!-- ./display youtube-->
-    <!--display spotify -->
-    {% for spotify in compilation.spotifyLinks %}
-        <iframe src="https://open.spotify.com/embed/track/{{ spotify }}?theme=0" width="20%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-    {% endfor %}
-    <!-- ./display spotify-->
+        <section class="compilation-gallery">
+            <!-- display pictures-->
+            {% for picture in compilation.pictures %}
+                <img src="{{ asset('uploads/'~picture ) }}" alt="image">
+            {% endfor %}
+            <!-- ./display pictures-->
 
+            <!--display youtube -->
+            {% for youtube in compilation.youtubeLinks %}
+                {% for link in youtube %}
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ link }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                {% endfor %}
+            {% endfor %}
+            <!-- ./display youtube-->
+
+            <!--display spotify -->
+            {% for spotify in compilation.spotifyLinks %}
+                <iframe src="https://open.spotify.com/embed/track/{{ spotify }}?theme=0" width="20%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            {% endfor %}
+            <!-- ./display spotify-->
+        </section>
+    </div>
 {% endblock %}
