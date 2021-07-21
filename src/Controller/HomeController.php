@@ -10,17 +10,10 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="app_home")
-
-    public function index(AuthenticationUtils $authenticationUtils): Response
+     * @Route("/board", name="board")
+     */
+    public function board(AuthenticationUtils $authenticationUtils): Response
     {
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-
-        return $this->render('home/index.html.twig', [
-            'last_username' => $lastUsername,
-            'error' => $error]);
-    }*/
+        return $this->render('home/board.html.twig');
+    }
 }
