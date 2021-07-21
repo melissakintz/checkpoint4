@@ -1,23 +1,23 @@
-nav{
+.nav{
   background-color: rgba(223, 223, 223, 0.66);
   margin: 0;
   padding: 5px;
 }
 
-nav ul{
+.nav ul{
   display: flex;
   justify-content: space-between;
 }
 
-nav ul li{
+.nav ul li{
   list-style: none;
 }
 
-.register a:hover{
+.nav .register a:hover{
   color: #5eb5e0;
 }
 
-.register a{
+.nav .register a{
   text-decoration: none;
   text-transform: uppercase;
 }

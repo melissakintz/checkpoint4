@@ -69,9 +69,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $isVerified = false;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Compilation::class, mappedBy="creator")
+     */
+    private $compilations;
+
     public function __construct()
     {
         $this->likedCompilations = new ArrayCollection();
+        $this->compilations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -243,6 +249,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Compilation[]
+     */
+    public function getCompilations(): Collection
+    {
+        return $this->compilations;
+    }
+
+    public function addCompilation(Compilation $compilation): self
+    {
+        if (!$this->compilations->contains($compilation)) {
+            $this->compilations[] = $compilation;
+            $compilation->setCreator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompilation(Compilation $compilation): self
+    {
+        if ($this->compilations->removeElement($compilation)) {
+            // set the owning side to null (unless already changed)
+            if ($compilation->getCreator() === $this) {
+                $compilation->setCreator(null);
+            }
+        }
 
         return $this;
     }

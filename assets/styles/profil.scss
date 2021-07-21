@@ -1,0 +1,42 @@
+body{
+  background-color: #f3f3f3;
+}
+.contain{
+  margin-left: 20rem;
+}
+.profil-header{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 1.5rem;
+  background-color: white;
+  width: 90%;
+  margin: 2rem;
+}
+
+.profil-avatar{
+  overflow: visible;
+  width: 50%;
+}
+
+.profil-avatar img{
+  border-radius: 1rem;
+  box-shadow:1px 4px 6px -2px rgba(0, 0, 0, 0.05) ;
+}
+
+.profil-content{
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.profil-pseudo{
+  font-weight: bold;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.profil-description{
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}

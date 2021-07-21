@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
+
+.sidenav{
+  font-family: 'Poppins', sans-serif;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  bottom: 20px;
+  width: 70px;
+  border-radius: 10px;
+  box-sizing: initial;
+  border-left: 5px solid #3e3e3e;
+  background: #8f9acd;
+  transition: width 0.5s;
+}
+
+.sidenav:hover{
+  width: 250px;
+}
+
+.sidenav:hover ul{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-left: 5px;
+  padding-top: 40px;
+}
+
+.sidenav ul li{
+  position: relative;
+  list-style: none;
+  width: 100%;
+  border-top-left-radius: 20px ;
+  border-bottom-left-radius: 20px ;
+}
+
+.sidenav ul li a{
+  position: relative;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: white;
+}
+
+.sidenav ul li.active{
+  background-color: #fff;
+}
+
+.sidenav ul li.active a{
+  color: #5eb5e0;
+}
+
+.sidenav ul li a .icon{
+  position: relative;
+  display: block;
+  min-width: 70px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+
+.sidenav ul li a .icon icon-icon{
+  font-size: 1.5em;
+}
+
+.sidenav:hover ul li a .title{
+  position: relative;
+  display: block;
+  padding-left: 10px;
+  height: 60px;
+  line-height: 60px;
+  white-space: normal;
+}
+
+.sidenav .title{
+  display: none;
+}

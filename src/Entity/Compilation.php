@@ -59,6 +59,11 @@ class Compilation
      */
     private $likes;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="compilations")
+     */
+    private $creator;
+
     public function __construct()
     {
         $this->likes = new ArrayCollection();
@@ -176,6 +181,18 @@ class Compilation
         if ($this->likes->removeElement($like)) {
             $like->removeLikedCompilation($this);
         }
+
+        return $this;
+    }
+
+    public function getCreator(): ?User
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(?User $creator): self
+    {
+        $this->creator = $creator;
 
         return $this;
     }
