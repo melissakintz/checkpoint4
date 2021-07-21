@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Compilation{% endblock %}
+
+{% block body %}
+    <h1>Edit Compilation</h1>
+
+    {{ include('user/compilation/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('compilation_index') }}">back to list</a>
+
+    {{ include('user/compilation/_delete_form.html.twig') }}
+{% endblock %}

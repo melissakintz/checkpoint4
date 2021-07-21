@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} {{ user.pseudo }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {% include './components/_sidenav.thml.twig' %}
+    <div class="contain">
+        <section class="profil-header">
+            <div class="profil-avatar">
+                <img src="{{ asset('uploads/' ~user.avatar) }}" alt="image profil">
+            </div>
+            <div class="profil-content">
+                <p class="profil-pseudo">{{ user.pseudo }}</p>
+                <p class="profil-description">{{ user.description }}</p>
+            </div>
+        </section>
+
+        <section class="compilations">
+            <p>Vos mood board</p>
+            {% for compilation in user.compilations %}
+                <a href="{{ path('compilation_show', {id: compilation.id}) }}">
+                    {{ compilation.title }} / {{ compilation.description }}
+                </a>
+            {% endfor %}
+        </section>
+
+        <a href="{{ path('compilation_new') }}">créer</a>
+
+    </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

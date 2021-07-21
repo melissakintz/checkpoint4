@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -69,9 +70,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $isVerified = false;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Compilation::class, mappedBy="creator")
+     */
+    private $compilations;
+
     public function __construct()
     {
         $this->likedCompilations = new ArrayCollection();
+        $this->compilations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -245,5 +252,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->isVerified = $isVerified;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Compilation[]
+     */
+    public function getCompilations(): Collection
+    {
+        return $this->compilations;
+    }
+
+    public function addCompilation(Compilation $compilation): self
+    {
+        if (!$this->compilations->contains($compilation)) {
+            $this->compilations[] = $compilation;
+            $compilation->setCreator($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCompilation(Compilation $compilation): self
+    {
+        if ($this->compilations->removeElement($compilation)) {
+            // set the owning side to null (unless already changed)
+            if ($compilation->getCreator() === $this) {
+                $compilation->setCreator(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function isLiked(Compilation $compilation):bool
+    {
+        return $this->getLikedCompilations()->contains($compilation) ? true : false;
     }
 }

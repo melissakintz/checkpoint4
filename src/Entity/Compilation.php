@@ -30,11 +30,6 @@ class Compilation
     private $spotifyLinks = [];
 
     /**
-     * @ORM\Column(type="array", nullable=true)
-     */
-    private $applemusicLinks = [];
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
@@ -58,6 +53,17 @@ class Compilation
      * @ORM\ManyToMany(targetEntity=User::class, mappedBy="likedCompilations")
      */
     private $likes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="compilations")
+     */
+    private $creator;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $pictures = [];
+
 
     public function __construct()
     {
@@ -89,18 +95,6 @@ class Compilation
     public function setSpotifyLinks(?array $spotifyLinks): self
     {
         $this->spotifyLinks = $spotifyLinks;
-
-        return $this;
-    }
-
-    public function getApplemusicLinks(): ?array
-    {
-        return $this->applemusicLinks;
-    }
-
-    public function setApplemusicLinks(?array $applemusicLinks): self
-    {
-        $this->applemusicLinks = $applemusicLinks;
 
         return $this;
     }
@@ -176,6 +170,30 @@ class Compilation
         if ($this->likes->removeElement($like)) {
             $like->removeLikedCompilation($this);
         }
+
+        return $this;
+    }
+
+    public function getCreator(): ?User
+    {
+        return $this->creator;
+    }
+
+    public function setCreator(?User $creator): self
+    {
+        $this->creator = $creator;
+
+        return $this;
+    }
+
+    public function getPictures(): ?array
+    {
+        return $this->pictures;
+    }
+
+    public function setPictures(?array $pictures): self
+    {
+        $this->pictures = $pictures;
 
         return $this;
     }

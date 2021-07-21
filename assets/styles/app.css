@@ -1,3 +1,6 @@
+@import "global.scss";
 @import "home.scss";
 @import "nav.scss";
-
+@import "profil.scss";
+@import "sidenav.scss";
+@import "gallery.scss";
