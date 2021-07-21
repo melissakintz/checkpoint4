@@ -18,7 +18,7 @@
   width: 250px;
 }
 
-.sidenav:hover ul{
+.sidenav ul{
   position: absolute;
   top: 0;
   left: 0;
@@ -35,12 +35,25 @@
   border-bottom-left-radius: 20px ;
 }
 
+.sidenav ul li:hover{
+  background: #FFFFFF;
+}
+
+.sidenav ul li:hover a{
+  color: #5eb5e0;
+
+}
+
 .sidenav ul li a{
   position: relative;
   width: 100%;
   display: flex;
   text-decoration: none;
   color: white;
+}
+
+.sidenav ul li.active{
+  background-color: #fff;
 }
 
 .sidenav ul li.active{

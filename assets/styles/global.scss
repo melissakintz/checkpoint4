@@ -11,3 +11,28 @@ input{
 .contain{
   margin-left: 18rem;
 }
+
+.collection-container{
+  margin: 50px;
+  position: relative;
+}
+
+
+.card{
+  position: absolute;
+  width: 6rem;
+  height: 8rem;
+  border-radius: 10px;
+}
+
+.collection .card-1{
+  background: #8f9acd;
+}
+.collection .card-2{
+  transform: rotate(12deg) ;
+  background: white;
+}
+.collection .card-3{
+  transform: rotate(20deg);
+  background: #B0413E;
+}

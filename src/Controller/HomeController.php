@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CompilationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,8 +13,13 @@ class HomeController extends AbstractController
     /**
      * @Route("/board", name="board")
      */
-    public function board(AuthenticationUtils $authenticationUtils): Response
+    public function board(CompilationRepository $repository): Response
     {
-        return $this->render('home/board.html.twig');
+        $suggestions = $repository->findOther($this->getUser());
+        $compilations = $repository->findBy(['creator' => $this->getUser()], [], 5);
+        return $this->render('home/board.html.twig', [
+            'suggestions' => $suggestions,
+            'compilations' => $compilations
+        ]);
     }
 }

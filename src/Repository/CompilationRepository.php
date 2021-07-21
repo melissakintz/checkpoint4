@@ -19,32 +19,16 @@ class CompilationRepository extends ServiceEntityRepository
         parent::__construct($registry, Compilation::class);
     }
 
-    // /**
-    //  * @return Compilation[] Returns an array of Compilation objects
-    //  */
     /*
-    public function findByExampleField($value)
+     * findAll where creator isn't actual user
+     */
+    public function findOther($user): array
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
+            ->andWhere('c.creator != :user')
+            ->setParameter('user', $user )
             ->setMaxResults(10)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Compilation
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
