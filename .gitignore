@@ -22,6 +22,7 @@
 .idea
 .idea/*
 .DS_Store
+/public/uploads/
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
