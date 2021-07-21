@@ -7,4 +7,6 @@ vich_uploader:
             uri_prefix: /images/products
             # Chemin vers le dossier de stockage
             upload_destination: '%upload_directory%'
+            delete_on_update: true
+            delete_on_remove: true
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
