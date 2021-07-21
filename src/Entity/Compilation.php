@@ -30,11 +30,6 @@ class Compilation
     private $spotifyLinks = [];
 
     /**
-     * @ORM\Column(type="array", nullable=true)
-     */
-    private $applemusicLinks = [];
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $description;
@@ -94,18 +89,6 @@ class Compilation
     public function setSpotifyLinks(?array $spotifyLinks): self
     {
         $this->spotifyLinks = $spotifyLinks;
-
-        return $this;
-    }
-
-    public function getApplemusicLinks(): ?array
-    {
-        return $this->applemusicLinks;
-    }
-
-    public function setApplemusicLinks(?array $applemusicLinks): self
-    {
-        $this->applemusicLinks = $applemusicLinks;
 
         return $this;
     }

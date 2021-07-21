@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Compilation;
 use App\Form\CompilationType;
 use App\Repository\CompilationRepository;
+use App\Service\Extractor;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,13 +29,33 @@ class CompilationController extends AbstractController
     /**
      * @Route("/new", name="new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Extractor $extractor): Response
     {
         $compilation = new Compilation();
         $form = $this->createForm(CompilationType::class, $compilation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if(!empty($form->get('youtube')->getData()[1])){
+                //extract id from youtube video
+                $youtubeLinks = $form->get('youtube')->getData();
+                $ytIds[] = $extractor->extractYoutube($youtubeLinks);
+
+                $compilation->setYoutubeLinks($ytIds);
+            }
+
+            //explode spotify links to array
+            $spotifyLinks = $form->get('spotify')->getData();
+            $spotifyILinks = $extractor->toArray($spotifyLinks);
+
+            $compilation->setSpotifyLinks($spotifyILinks);
+
+            $date = new \DateTime('now');
+            $compilation->setDate($date);
+            $compilation->setCreator($this->getUser());
+
+            //send in base
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($compilation);
             $entityManager->flush();

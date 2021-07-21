@@ -17,21 +17,21 @@ class CompilationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('youtubeLinks', TextType::class, [
-                'label' => 'Liens youtube'
+            ->add('youtube', TextType::class, [
+                'mapped' => false,
+                'label' => 'Liens youtube',
+                    'required' => false,
                 ]
             )
-            ->add('spotifyLinks', TextType::class, [
+            ->add('spotify', TextType::class, [
+                'mapped' => false,
                 'label' => 'Liens spotify'
             ])
-            ->add('applemusicLinks', TextType::class, [
-                'label' => 'Liens apple music'
-            ])
             ->add('description', TextType::class, [
-                'label' => 'Liens youtube'
+                'label' => 'Description'
             ])
             ->add('title', TextType::class, [
-                'label' => 'Liens youtube'
+                'label' => 'Titre du mood board'
             ])
             ->add('private', ChoiceType::class, [
                 'label' => 'Privé ?',

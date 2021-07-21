@@ -6,9 +6,23 @@ namespace App\Service;
 
 class Extractor
 {
-    public function extractYoutube(string $links): string
+
+    public function toArray(string $links): array
     {
-        $array = explode('=', $links);
-        return $array[1];
+        return explode(',', $links);
+    }
+
+    public function extractYoutube(string $links): array
+    {
+        $liens = $this->toArray($links);
+
+        $ytIds = [];
+        foreach($liens as $link){
+            $array = explode('v=', $link);
+            $id = explode('&', $array[1]);
+            $ytIds[] = $id[0];
+        }
+
+        return $ytIds;
     }
 }

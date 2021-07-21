@@ -1,12 +1,4 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
-<ul>
-    {% for links in form.youtubeLinks %}
-    <li>
-        {{ form_widget(links) }}
-    </li>
-
-</ul>
-{% endfor %}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
