@@ -2,10 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Compilation;
+use App\Form\CommentType;
 use App\Form\CompilationType;
 use App\Repository\CompilationRepository;
 use App\Service\Extractor;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -93,6 +96,38 @@ class CompilationController extends AbstractController
     {
         return $this->render('user/compilation/show.html.twig', [
             'compilation' => $compilation,
+        ]);
+    }
+
+    /**
+     * @Route("/{compilation}/comments", name="comments", methods={"GET", "POST"})
+     */
+    public function comments(Compilation $compilation, Request $request): Response
+    {
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setAuthor($this->getUser());
+
+            $date = new DateTime('now');
+            $comment->setDate($date);
+            $comment->setCompilation($compilation);
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($comment);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('compilation_comments', ["compilation" => $compilation->getId()]);
+        }
+
+        $comments = $this->getDoctrine()->getRepository(Comment::class)->findBy(['compilation' => $compilation]);
+
+        return $this->render('user/compilation/show_comments.html.twig', [
+            'comments' => $comments,
+            'compilation' => $compilation,
+            'form' => $form->createView()
         ]);
     }
 

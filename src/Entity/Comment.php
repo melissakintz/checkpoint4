@@ -36,7 +36,7 @@ class Comment
     /**
      * @ORM\ManyToOne(targetEntity=Compilation::class, inversedBy="comments")
      */
-    private $complilation;
+    private $compilation;
 
     public function getId(): ?int
     {
@@ -79,14 +79,14 @@ class Comment
         return $this;
     }
 
-    public function getComplilation(): ?Compilation
+    public function getCompilation(): ?Compilation
     {
-        return $this->complilation;
+        return $this->compilation;
     }
 
-    public function setComplilation(?Compilation $complilation): self
+    public function setCompilation(?Compilation $compilation): self
     {
-        $this->complilation = $complilation;
+        $this->compilation = $compilation;
 
         return $this;
     }
