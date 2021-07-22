@@ -16,25 +16,45 @@
         </section>
 
         <section class="compilation-header">
-            <div class="compilation-title">
-                {{ compilation.title }}
-            </div>
-            <div class="compilation-description">
-                {{ compilation.description }}
-            </div>
+            {%  include './components/_compilation_details.html.twig' %}
+
         </section>
 
         <section class="comments">
-            {% for comment in comments %}
-                {{ comment.content }}
-            {% endfor %}
+                <div class="rounded-b-lg m-4 ">
+                    <div id="task-comments" class="pt-4">
+                        <!-- comment-->
+                        {% for comment in comments %}
+                            <div class="bg-white rounded-lg p-3  flex flex-col justify-center items-center md:items-start shadow-lg mb-4">
+                                <div class="flex flex-row justify-center mr-2">
+                                    <img alt="avatar" width="48" height="48" class="rounded-full w-10 h-10 mr-4 shadow-lg mb-4" src="{{ asset('uploads/'~comment.author.avatar) }}">
+                                    <h3 class="text-blue-600 font-semibold text-lg text-center md:text-left ">
+                                        @{{ comment.author.pseudo }}
+                                        <span class="text-sm text-gray-400">| {{ comment.date|date('d/m/Y H:m') }}</span>
+                                    </h3>
+                                </div>
+                                <p class="text-gray-600 text-lg text-center md:text-left">{{ comment.content }}</p>
+                            </div>
+                        <!-- ./ comment-->
+                        {% endfor %}
+                    </div>
+                </div>
         </section>
 
-        <section class="comments-add">
+        <!-- add a comment-->
+        <section class="comments-add text-center">
             {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <button class="btn"><ion-icon name="send-outline" size="large"></ion-icon></button>
+            {{ form_row(form.content, {
+                attr:{
+                    class: 'w-2/3 h-9'
+                },
+                label_attr: {
+                    class: 'block'
+                }
+            }) }}
+            <button class="inline"><ion-icon name="send-outline" size="large"></ion-icon></button>
             {{ form_end(form) }}
         </section>
+        <!-- ./add a comment-->
     </div>
 {% endblock %}

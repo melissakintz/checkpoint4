@@ -18,21 +18,33 @@ class UserType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'E-mail'
+                'label' => 'E-mail',
+                'attr' => [
+                    'class' => 'text-blue-300 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600'
+                ]
             ])
             ->add('pseudo', TextType::class, [
-                'label' => 'Pseudo'
+                'label' => 'Pseudo',
+                'attr' => [
+                    'class' => 'text-blue-300 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600'
+                ]
             ])
             ->add('avatar', FileType::class, [
                 'mapped' => false,
                 'label' => 'Avatar'
             ])
             ->add('description', TextType::class, [
-                'label' => 'Description de votre profil'
+                'label' => 'Description de votre profil',
+                'attr' => [
+                    'class' => 'text-blue-300 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600'
+                ]
             ])
             ->add('birthYear', DateType::class, [
                 'label' => 'Date de naissance',
-                'widget' => 'single_text'
+                'widget' => 'single_text',
+                'attr' => [
+                    'class' => 'text-blue-300 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600'
+                ]
             ])
         ;
     }

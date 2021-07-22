@@ -1,8 +1,9 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 @import "global.scss";
-@import "home.scss";
-@import "nav.scss";
 @import "profil.scss";
 @import "sidenav.scss";
 @import "gallery.scss";
 @import "board.scss";
-@import "forms.scss";

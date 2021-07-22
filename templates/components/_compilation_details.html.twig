@@ -1,0 +1,10 @@
+<section class="p-4 bg-white m-4 rounded-2xl">
+    <div class="text-9xl pb-11">
+        {{ compilation.title }}
+        <a class="text-sm text-gray-400" href="{{ path('user_show', {id: compilation.creator.id}) }}"> @{{ compilation.creator.pseudo }}</a>
+
+    </div>
+    <div class="compilation-description">
+        {{ compilation.description }}
+    </div>
+</section>
