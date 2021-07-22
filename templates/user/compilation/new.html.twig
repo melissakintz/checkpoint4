@@ -5,11 +5,11 @@
 {% endblock %}
 
 {% block body %}
-    {% include 'components/_navbar.html.twig' %}
+    {% include './components/_sidenav.thml.twig' %}
+<div class="contain">
 
     {{ form_start(form) }}
-
-    <!-- login -->
+    <!-- create -->
     <div class="relative py-3 sm:max-w-xl sm:mx-auto mt-8">
         <div class="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
         </div>
@@ -23,15 +23,14 @@
 
                         {{ form_widget(form) }}
                         <div class="relative">
-                            <button class="bg-blue-500 text-white rounded-md px-2 py-1">S'inscrire</button>
+                            <button class="bg-blue-500 text-white rounded-md px-2 py-1">Créer!</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- ./login -->
-
-
+    <!-- ./create -->
     {{ form_end(form) }}
+</div>
 {% endblock %}
