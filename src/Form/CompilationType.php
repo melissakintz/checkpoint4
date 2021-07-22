@@ -17,6 +17,9 @@ class CompilationType extends AbstractType
     {
         $builder
             ->add('youtube', TextType::class, [
+                'attr' => [
+                    'class' => 'text-blue-300 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600'
+                ],
                 'mapped' => false,
                 'label' => 'Liens youtube',
                     'required' => false,
@@ -25,13 +28,22 @@ class CompilationType extends AbstractType
             ->add('spotify', TextType::class, [
                 'mapped' => false,
                 'label' => 'Liens spotify',
-                'required' => false
+                'required' => false,
+                'attr' => [
+                    'class' => 'text-blue-300 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600'
+                ]
             ])
             ->add('description', TextType::class, [
-                'label' => 'Description'
+                'label' => 'Description',
+                'attr' => [
+                    'class' => 'text-blue-300 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600'
+                ]
             ])
             ->add('title', TextType::class, [
-                'label' => 'Titre du mood board'
+                'label' => 'Titre du mood board',
+                'attr' => [
+                    'class' => 'text-blue-300 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600'
+                ]
             ])
             ->add('pictures', FileType::class, [
                 'mapped' => false,

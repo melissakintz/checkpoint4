@@ -25,7 +25,8 @@ class CompilationRepository extends ServiceEntityRepository
     public function findOther($user): array
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.creator != :user')
+            ->where('c.creator != :user')
+            ->andWhere('c.private = false')
             ->setParameter('user', $user )
             ->setMaxResults(10)
             ->getQuery()
