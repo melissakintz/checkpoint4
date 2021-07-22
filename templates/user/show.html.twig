@@ -29,11 +29,13 @@
                 <p class="profil-description">{{ user.description }}</p>
             </div>
         </section>
-<section class="bg-white m-32 rounded-2xl">
-        <section class="collections">
-            <p>Mes collections</p>
-            <div class="collection-container">
-                {% for compilation in user.compilations %}
+
+        {% if app.user is same as user.id %}
+        <section class="bg-white m-32 rounded-2xl">
+            <section class="collections">
+                <p>Mes collections</p>
+                <div class="collection-container">
+                    {% for compilation in user.compilations %}
                     <div class="collection">
                         <div class="card card-1"></div>
                         <div class="card card-2"></div>
@@ -41,40 +43,61 @@
                         <div class="card card-4"></div>
                     </div>
                     <span class="card-title">
+                                <a href="{{ path('compilation_show', {id: compilation.id}) }}">
+                                    {{ compilation.title }}
+                                </a>
+                            </span>
+                    {% else %}
+                </div>
+                <p>Vous n'avez pas encore de collections ...</p>
+                {% endfor %}
+            </section>
+
+            <section class="likes">
+                <p>Mes likes</p>
+                <div class="collection-container">
+                    {% for compilation in user.likedCompilations %}
+                        <div class="collection">
+                            <div class="card card-1"></div>
+                            <div class="card card-2"></div>
+                            <div class="card card-3"></div>
+                            <div class="card card-4"></div>
+                        </div>
+                        <span class="card-title">
                         <a href="{{ path('compilation_show', {id: compilation.id}) }}">
                             {{ compilation.title }}
                         </a>
                     </span>
-
+                    {% else %}
+                        <p>Vous n'avez pas encore de collections ...</p>
+                    {% endfor %}
+                </div>
+            </section>
             {% else %}
-            </div>
-                <p>Vous n'avez pas encore de collections ...</p>
-            {% endfor %}
-        </section>
-
-        <section class="likes">
-            <p>Mes likes</p>
-            <div class="collection-container">
-                {% for compilation in user.likedCompilations %}
-                    <div class="collection">
-                        <div class="card card-1"></div>
-                        <div class="card card-2"></div>
-                        <div class="card card-3"></div>
-                        <div class="card card-4"></div>
+            <section class="bg-white m-32 rounded-2xl">
+                <section class="collections">
+                    <p>Ses collections publiques</p>
+                    <div class="collection-container">
+                        {% for compilation in user.compilations %}
+                        {% if compilation.private is same as false %}
+                            <div class="collection">
+                                <div class="card card-1"></div>
+                                <div class="card card-2"></div>
+                                <div class="card card-3"></div>
+                                <div class="card card-4"></div>
+                            </div>
+                            <span class="card-title">
+                                <a href="{{ path('compilation_show', {id: compilation.id}) }}">
+                                    {{ compilation.title }}
+                                </a>
+                            </span>
+                        {% endif %}
                     </div>
-                    <span class="card-title">
-                        <a href="{{ path('compilation_show', {id: compilation.id}) }}">
-                            {{ compilation.title }}
-                        </a>
-                    </span>
-            {% else %}
-                <p>Vous n'avez pas encore de collections ...</p>
-            {% endfor %}
-            </div>
-        </section>
-</section>
+                    {% endfor %}
+                </section>
+                {% endif %}
+            </section>
     </div>
-
 
 {% endblock %}
 
