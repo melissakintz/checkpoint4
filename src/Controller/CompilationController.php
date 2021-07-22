@@ -156,6 +156,7 @@ class CompilationController extends AbstractController
 
     /**
      * @Route("/{id}", name="delete", methods={"POST"})
+     * @isGranted("ROLE_USER")
      */
     public function delete(Request $request, Compilation $compilation): Response
     {
@@ -170,7 +171,7 @@ class CompilationController extends AbstractController
 
     /**
      * @param Compilation $compilation
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return Response
      * @Route("/like/{compilation}", name="like")
      * @isGranted("ROLE_USER")
      */

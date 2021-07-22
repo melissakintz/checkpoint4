@@ -25,11 +25,8 @@
                 </a>
             </div>
         <div>
-            {% if compilation.creator.id is same as app.user.id %}
-                <form method="post" action="{{ path('compilation_delete', {'id': compilation.id}) }}" onsubmit="return confirm('Veux-tu vraiment supprimer cette collection ?');">
-                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ compilation.id) }}">
-                    <button class="btn"><ion-icon name="trash-outline" size="large"></ion-icon></button>
-                </form>
+            {% if compilation.creator.id is same as app.user.id or is_granted("ROLE_ADMIN")%}
+                {% include '/user/compilation/_delete_form.html.twig' %}
             {% endif %}
         </div>
     </section>

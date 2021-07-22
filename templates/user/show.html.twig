@@ -11,6 +11,7 @@
 {% block body %}
     {% include './components/_sidenav.thml.twig' %}
     <div class="contain">
+        <!-- user interactions -->
         <section class="interactions">
             <div class="like">
                 {% if user.id is same as app.user.id %}
@@ -20,6 +21,8 @@
                 {% endif %}
             </div>
         </section>
+        <!-- ./user interactions -->
+
         <section class="profil-header">
             <div class="profil-avatar">
                 <img src="{{ asset('uploads/' ~user.avatar) }}" alt="image profil">
