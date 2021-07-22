@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use DateTime;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/comment")
@@ -29,6 +30,7 @@ class CommentController extends AbstractController
 
     /**
      * @Route("/new", name="comment_new", methods={"GET","POST"})
+     * @isGranted("ROLE_USER")
      */
     public function new(Request $request, Compilation $compilation): Response
     {

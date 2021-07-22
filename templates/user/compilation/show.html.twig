@@ -37,11 +37,6 @@
         {%  include './components/_compilation_details.html.twig' %}
 
         <section class="flex flex-wrap m-0">
-            <!-- display pictures-->
-            {% for picture in compilation.pictures %}
-                <div><img src="{{ asset('uploads/'~picture ) }}" alt="image" class="max-w-lg"></div>
-            {% endfor %}
-            <!-- ./display pictures-->
 
             <!--display youtube -->
             {% for youtube in compilation.youtubeLinks %}
@@ -50,6 +45,12 @@
                 {% endfor %}
             {% endfor %}
             <!-- ./display youtube-->
+
+            <!-- display pictures-->
+            {% for picture in compilation.pictures %}
+                <div><img src="{{ asset('uploads/'~picture ) }}" alt="image" class="max-w-lg"></div>
+            {% endfor %}
+            <!-- ./display pictures-->
 
             <!--display spotify -->
             {% for spotify in compilation.spotifyLinks %}

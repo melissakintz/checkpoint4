@@ -32,7 +32,7 @@
 
         {% if app.user.id is same as user.id %}
         <!-- app user profil-->
-        <section class="bg-white m-32 rounded-2xl">
+        <section class="bg-white rounded-2xl h-screen">
             <section class="collections">
                 <p>Mes collections</p>
                 <div class="collection-container">
@@ -53,10 +53,10 @@
                 <span>Vous n'avez pas encore de collections ...</span>
                 {% endfor %}
             </section>
-
+<br>
             <section class="likes">
-                <p>Mes likes</p>
-                <div class="collection-container">
+                <p class="mt-16">Mes likes</p>
+                <div class="collection-container w-full">
                     {% for compilation in user.likedCompilations %}
                         <div class="collection">
                             <div class="card card-1"></div>
@@ -100,6 +100,7 @@
                 </section>
                 {% endif %}
             </section>
+        </section>
     </div>
 
 {% endblock %}

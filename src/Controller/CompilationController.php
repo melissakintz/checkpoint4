@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/compilation", name="compilation_"))
@@ -31,6 +32,7 @@ class CompilationController extends AbstractController
 
     /**
      * @Route("/new", name="new", methods={"GET","POST"})
+     * @isGranted("ROLE_USER")
      */
     public function new(Request $request, Extractor $extractor): Response
     {
@@ -101,6 +103,7 @@ class CompilationController extends AbstractController
 
     /**
      * @Route("/{compilation}/comments", name="comments", methods={"GET", "POST"})
+     * @isGranted("ROLE_USER")
      */
     public function comments(Compilation $compilation, Request $request): Response
     {
@@ -169,6 +172,7 @@ class CompilationController extends AbstractController
      * @param Compilation $compilation
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      * @Route("/like/{compilation}", name="like")
+     * @isGranted("ROLE_USER")
      */
     public function like(Compilation $compilation): Response
     {
