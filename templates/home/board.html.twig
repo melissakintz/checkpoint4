@@ -11,9 +11,9 @@
 {% block body %}
     {% include './components/_sidenav.thml.twig' %}
     <div class="contain">
-        <section class="board">
-            <p> mes collections</p>
-            <div class="collection-container">
+        <section class="board bg-white rounded-2xl">
+            <p class="text-4xl"> mes collections</p>
+            <div class="collection-container mr-0">
                 {% for compilation in compilations %}
                 <div class="collection">
                     <div class="card card-1"></div>
@@ -33,8 +33,8 @@
             {% endfor %}
         </section>
 
-        <section class="board board-suggestions">
-            <p>Suggestions</p>
+        <section class="board board-suggestions bg-white rounded-2xl">
+            <p class="text-4xl">Suggestions</p>
             <div class="collection-container">
                 {% for compilation in suggestions %}
                     <div class="collection">

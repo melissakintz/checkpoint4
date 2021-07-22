@@ -3,11 +3,25 @@
 {% block title %}Edit User{% endblock %}
 
 {% block body %}
-    <h1>Edit User</h1>
-
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('user_index') }}">back to list</a>
-
-    {{ include('user/_delete_form.html.twig') }}
+ {% include './components/_sidenav.thml.twig' %}
+   <div class="contain">
+       <!-- login -->
+       <div class="relative py-3 sm:max-w-xl sm:mx-auto mt-8">
+           <div class="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
+           </div>
+           <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+               <div class="max-w-md mx-auto">
+                   <div>
+                       <h1 class="text-2xl font-semibold">Modifier votre profil :)</h1>
+                   </div>
+                   <div class="divide-y divide-gray-200">
+                       <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                           {{ include('user/_form.html.twig', {'button_label': 'Modifier'}) }}
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <!-- ./login -->
+   </div>
 {% endblock %}

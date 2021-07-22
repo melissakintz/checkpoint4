@@ -25,21 +25,12 @@
     </section>
 
     <div class="contain">
-        <section class="compilation-header">
-            <div class="compilation-title">
-                {{ compilation.title }}
-            </div>
-            <div class="compilation-description">
-                {{ compilation.description }}
-            </div>
+        {%  include './components/_compilation_details.html.twig' %}
 
-
-        </section>
-
-        <section class="compilation-gallery">
+        <section class="flex flex-wrap">
             <!-- display pictures-->
             {% for picture in compilation.pictures %}
-                <img src="{{ asset('uploads/'~picture ) }}" alt="image">
+                <div><img src="{{ asset('uploads/'~picture ) }}" alt="image"></div>
             {% endfor %}
             <!-- ./display pictures-->
 
