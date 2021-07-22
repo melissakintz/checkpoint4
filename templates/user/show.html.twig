@@ -30,7 +30,8 @@
             </div>
         </section>
 
-        {% if app.user is same as user.id %}
+        {% if app.user.id is same as user.id %}
+        <!-- app user profil-->
         <section class="bg-white m-32 rounded-2xl">
             <section class="collections">
                 <p>Mes collections</p>
@@ -49,7 +50,7 @@
                             </span>
                     {% else %}
                 </div>
-                <p>Vous n'avez pas encore de collections ...</p>
+                <span>Vous n'avez pas encore de collections ...</span>
                 {% endfor %}
             </section>
 
@@ -64,16 +65,18 @@
                             <div class="card card-4"></div>
                         </div>
                         <span class="card-title">
-                        <a href="{{ path('compilation_show', {id: compilation.id}) }}">
-                            {{ compilation.title }}
-                        </a>
-                    </span>
+                                <a href="{{ path('compilation_show', {id: compilation.id}) }}">
+                                    {{ compilation.title }}
+                                </a>
+                            </span>
                     {% else %}
-                        <p>Vous n'avez pas encore de collections ...</p>
+                        <span class="text-sm">Vous n'avez pas encore de collections ...</span>
                     {% endfor %}
                 </div>
             </section>
             {% else %}
+
+            <!-- other user goes on profil-->
             <section class="bg-white m-32 rounded-2xl">
                 <section class="collections">
                     <p>Ses collections publiques</p>
