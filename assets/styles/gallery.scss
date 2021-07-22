@@ -5,5 +5,11 @@
   padding: 1rem;
   border-radius: 11px;
   margin-top: 1rem;
-  margin-left: 92%;
+  margin-left: 90%;
+}
+
+@media screen and (max-width: 800px) {
+  .interactions{
+    margin-left: 80%;
+  }
 }

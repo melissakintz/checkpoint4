@@ -6,6 +6,7 @@ use App\Entity\Compilation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,21 +17,21 @@ class CompilationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('youtube', TextType::class, [
+            ->add('youtube', TextareaType::class, [
                 'attr' => [
-                    'class' => 'text-blue-300 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600'
+                    'class' => 'text-blue-300 peer placeholder-transparent h-32 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600'
                 ],
                 'mapped' => false,
                 'label' => 'Liens youtube',
                     'required' => false,
                 ]
             )
-            ->add('spotify', TextType::class, [
+            ->add('spotify', TextareaType::class, [
                 'mapped' => false,
                 'label' => 'Liens spotify',
                 'required' => false,
                 'attr' => [
-                    'class' => 'text-blue-300 peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600'
+                    'class' => 'text-blue-300 peer placeholder-transparent h-32 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600'
                 ]
             ])
             ->add('description', TextType::class, [

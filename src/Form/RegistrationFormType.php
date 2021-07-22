@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,6 +27,18 @@ class RegistrationFormType extends AbstractType
                 ]
             ])
             ->add('pseudo', TextType::class, [
+                'attr' => [
+                    'class' => 'peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600'
+                ]
+            ])
+            ->add('description', TextType::class, [
+                'attr' => [
+                    'class' => 'peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600'
+                ]
+            ])
+            ->add('birthYear', DateType::class, [
+                'widget' => 'single_text',
+                'label' => 'Date de naissance',
                 'attr' => [
                     'class' => 'peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600'
                 ]

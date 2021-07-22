@@ -5,6 +5,11 @@
 {% block body %}
     {% include './components/_sidenav.thml.twig' %}
     <section class="interactions">
+        <div class="retour">
+            <a href="{{ path('user_show', {id: compilation.creator.id}) }}">
+                <ion-icon name="chevron-back-outline" size="large"></ion-icon>
+            </a>
+        </div>
         <div class="like">
             <a href="{{ path('compilation_like', {compilation: compilation.id}) }}" id="like">
                 {%  for user in compilation.likes %}
@@ -14,23 +19,32 @@
                 {% else %}
                     <ion-icon name="heart-outline" size="large"></ion-icon>
                 {% endfor %}
+                <ion-icon name="heart-outline" size="large"></ion-icon>
+
             </a>
         </div>
-
-        <div class="commentary">
-            <a href="{{ path('compilation_comments', {compilation: compilation.id}) }}">
-                <ion-icon name="chatbubbles-outline" size="large"></ion-icon>
-            </a>
+            <div class="commentary">
+                <a href="{{ path('compilation_comments', {compilation: compilation.id}) }}">
+                    <ion-icon name="chatbubbles-outline" size="large"></ion-icon>
+                </a>
+            </div>
+        <div>
+            {% if compilation.creator.id is same as app.user.id %}
+                <form method="post" action="{{ path('compilation_delete', {'id': compilation.id}) }}" onsubmit="return confirm('Veux-tu vraiment supprimer cette collection ?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ compilation.id) }}">
+                    <button class="btn"><ion-icon name="trash-outline" size="large"></ion-icon></button>
+                </form>
+            {% endif %}
         </div>
     </section>
 
     <div class="contain">
         {%  include './components/_compilation_details.html.twig' %}
 
-        <section class="flex flex-wrap">
+        <section class="flex flex-wrap m-0">
             <!-- display pictures-->
             {% for picture in compilation.pictures %}
-                <div><img src="{{ asset('uploads/'~picture ) }}" alt="image"></div>
+                <div><img src="{{ asset('uploads/'~picture ) }}" alt="image" class="max-w-lg"></div>
             {% endfor %}
             <!-- ./display pictures-->
 
@@ -44,7 +58,7 @@
 
             <!--display spotify -->
             {% for spotify in compilation.spotifyLinks %}
-                <iframe src="https://open.spotify.com/embed/track/{{ spotify }}?theme=0" width="20%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                <iframe src="https://open.spotify.com/embed/track/{{ spotify }}?theme=0" width="50%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             {% endfor %}
             <!-- ./display spotify-->
         </section>

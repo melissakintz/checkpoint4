@@ -80,7 +80,7 @@ class CompilationController extends AbstractController
             $entityManager->persist($compilation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('compilation_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('compilation_show', ['id' => $compilation->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('user/compilation/new.html.twig', [
@@ -162,7 +162,7 @@ class CompilationController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('board', [], Response::HTTP_SEE_OTHER);
     }
 
     /**
