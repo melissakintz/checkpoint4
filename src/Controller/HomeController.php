@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CompilationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,17 +11,15 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class HomeController extends AbstractController
 {
     /**
-     * @Route("/", name="app_home")
-
-    public function index(AuthenticationUtils $authenticationUtils): Response
+     * @Route("/board", name="board")
+     */
+    public function board(CompilationRepository $repository): Response
     {
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-
-        return $this->render('home/index.html.twig', [
-            'last_username' => $lastUsername,
-            'error' => $error]);
-    }*/
+        $suggestions = $repository->findOther($this->getUser());
+        $compilations = $repository->findBy(['creator' => $this->getUser()], [], 5);
+        return $this->render('home/board.html.twig', [
+            'suggestions' => $suggestions,
+            'compilations' => $compilations
+        ]);
+    }
 }

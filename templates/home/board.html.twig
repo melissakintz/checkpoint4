@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} Board
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {% include './components/_sidenav.thml.twig' %}
+    <div class="contain">
+        <section class="board">
+            <p> mes collections</p>
+            <div class="collection-container">
+                {% for compilation in compilations %}
+                <div class="collection">
+                    <div class="card card-1"></div>
+                    <div class="card card-2"></div>
+                    <div class="card card-3"></div>
+                    <div class="card card-4"></div>
+                </div>
+                <span class="card-title">
+                        <a href="{{ path('compilation_show', {id: compilation.id}) }}">
+                            {{ compilation.title }}
+                        </a>
+                    </span>
+
+                {% else %}
+            </div>
+            Vous n'avez pas encore créer de collections
+            {% endfor %}
+        </section>
+
+        <section class="board board-suggestions">
+            <p>Suggestions</p>
+            <div class="collection-container">
+                {% for compilation in suggestions %}
+                    <div class="collection">
+                        <div class="card card-1"></div>
+                        <div class="card card-2"></div>
+                        <div class="card card-3"></div>
+                        <div class="card card-4"></div>
+                    </div>
+                    <span class="card-title">
+                        <a href="{{ path('compilation_show', {id: compilation.id}) }}">
+                            {{ compilation.title }}
+                        </a>
+                    </span>
+                {% else %}
+                    Pas de suggestions pour le moment ...
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+

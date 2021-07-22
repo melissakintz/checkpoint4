@@ -24,8 +24,9 @@ body{
 
 .profil-content{
   display: flex;
-  justify-content: space-between;
-  align-items: start;
+  justify-content: flex-end;
+  align-content: flex-start;
+  overflow: visible;
 }
 
 .profil-pseudo{
@@ -38,3 +39,8 @@ body{
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
+
+.collections p{
+  text-align: center;
+  font-size: 3rem;
+ }

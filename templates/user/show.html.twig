@@ -21,17 +21,26 @@
             </div>
         </section>
 
-        <section class="compilations">
+        <section class="collections">
             <p>Vos mood board</p>
-            {% for compilation in user.compilations %}
-                <a href="{{ path('compilation_show', {id: compilation.id}) }}">
-                    {{ compilation.title }} / {{ compilation.description }}
-                </a>
+            <div class="collection-container">
+                {% for compilation in user.compilations %}
+                    <div class="collection">
+                        <div class="card card-1"></div>
+                        <div class="card card-2"></div>
+                        <div class="card card-3"></div>
+                        <div class="card card-4"></div>
+                    </div>
+                    <span class="card-title">
+                        <a href="{{ path('compilation_show', {id: compilation.id}) }}">
+                            {{ compilation.title }}
+                        </a>
+                    </span>
+            {% else %}
+                <p>Vous n'avez pas encore de collections ...</p>
             {% endfor %}
+            </div>
         </section>
-
-        <a href="{{ path('compilation_new') }}">créer</a>
-
     </div>
 
 
