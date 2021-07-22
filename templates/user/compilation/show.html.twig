@@ -5,6 +5,7 @@
 {% block body %}
     {% include './components/_sidenav.thml.twig' %}
 
+    <!-- interactions -->
     <section class="interactions">
         <div class="retour">
             <a href="{{ path('user_show', {id: compilation.creator.id}) }}">
@@ -32,6 +33,7 @@
             {% endif %}
         </div>
     </section>
+    <!-- ./ interactions -->
 
     <div class="contain">
         {%  include './components/_compilation_details.html.twig' %}

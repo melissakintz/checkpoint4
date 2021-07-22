@@ -13,23 +13,12 @@
     <div class="contain">
         <section class="board bg-white rounded-2xl">
             <p class="text-4xl"> mes collections</p>
-            <div class="collection-container mr-0">
+            <div class="collection-container mr-0 ">
                 {% for compilation in compilations %}
-                <div class="collection">
-                    <div class="card card-1"></div>
-                    <div class="card card-2"></div>
-                    <div class="card card-3"></div>
-                    <div class="card card-4"></div>
-                </div>
-                <span class="card-title">
-                        <a href="{{ path('compilation_show', {id: compilation.id}) }}">
-                            {{ compilation.title }}
-                        </a>
-                    </span>
-
+                    {% include '/components/_compilation_card.html.twig' %}
                 {% else %}
             </div>
-            Vous n'avez pas encore créé de collections
+                Vous n'avez pas encore créé de collections
             {% endfor %}
         </section>
 
@@ -37,17 +26,7 @@
             <p class="text-4xl">Suggestions</p>
             <div class="collection-container">
                 {% for compilation in suggestions %}
-                    <div class="collection">
-                        <div class="card card-1"></div>
-                        <div class="card card-2"></div>
-                        <div class="card card-3"></div>
-                        <div class="card card-4"></div>
-                    </div>
-                    <span class="card-title">
-                        <a href="{{ path('compilation_show', {id: compilation.id}) }}">
-                            {{ compilation.title }}
-                        </a>
-                    </span>
+                    {% include '/components/_compilation_card.html.twig' %}
                 {% else %}
                     Pas de suggestions pour le moment ...
                 {% endfor %}

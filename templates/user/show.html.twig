@@ -37,17 +37,7 @@
                 <p>Mes collections</p>
                 <div class="collection-container">
                     {% for compilation in user.compilations %}
-                    <div class="collection">
-                        <div class="card card-1"></div>
-                        <div class="card card-2"></div>
-                        <div class="card card-3"></div>
-                        <div class="card card-4"></div>
-                    </div>
-                    <span class="card-title">
-                                <a href="{{ path('compilation_show', {id: compilation.id}) }}">
-                                    {{ compilation.title }}
-                                </a>
-                            </span>
+                        {% include '/components/_compilation_card.html.twig' %}
                     {% else %}
                 </div>
                 <span>Vous n'avez pas encore de collections ...</span>
@@ -58,19 +48,9 @@
                 <p class="mt-16">Mes likes</p>
                 <div class="collection-container w-full">
                     {% for compilation in user.likedCompilations %}
-                        <div class="collection">
-                            <div class="card card-1"></div>
-                            <div class="card card-2"></div>
-                            <div class="card card-3"></div>
-                            <div class="card card-4"></div>
-                        </div>
-                        <span class="card-title">
-                                <a href="{{ path('compilation_show', {id: compilation.id}) }}">
-                                    {{ compilation.title }}
-                                </a>
-                            </span>
+                        {% include '/components/_compilation_card.html.twig' %}
                     {% else %}
-                        <span class="text-sm">Vous n'avez pas encore de collections ...</span>
+                        <span class="text-sm">Vous n'avez pas encore likée de collections ...</span>
                     {% endfor %}
                 </div>
             </section>
@@ -83,17 +63,7 @@
                     <div class="collection-container">
                         {% for compilation in user.compilations %}
                         {% if compilation.private is same as false %}
-                            <div class="collection">
-                                <div class="card card-1"></div>
-                                <div class="card card-2"></div>
-                                <div class="card card-3"></div>
-                                <div class="card card-4"></div>
-                            </div>
-                            <span class="card-title">
-                                <a href="{{ path('compilation_show', {id: compilation.id}) }}">
-                                    {{ compilation.title }}
-                                </a>
-                            </span>
+                            {% include '/components/_compilation_card.html.twig' %}
                         {% endif %}
                     </div>
                     {% endfor %}
