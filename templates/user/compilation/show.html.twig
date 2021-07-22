@@ -4,6 +4,26 @@
 
 {% block body %}
     {% include './components/_sidenav.thml.twig' %}
+    <section class="interactions">
+        <div class="like">
+            <a href="{{ path('compilation_like', {compilation: compilation.id}) }}" id="like">
+                {%  for user in compilation.likes %}
+                    {% if user.id is same as app.user.id %}
+                        <ion-icon name="heart" size="large"></ion-icon>
+                    {% endif %}
+                {% else %}
+                    <ion-icon name="heart-outline" size="large"></ion-icon>
+                {% endfor %}
+            </a>
+        </div>
+
+        <div class="commentary">
+            <a>
+                <ion-icon name="chatbubbles-outline" size="large"></ion-icon>
+            </a>
+        </div>
+    </section>
+
     <div class="contain">
         <section class="compilation-header">
             <div class="compilation-title">
@@ -13,17 +33,7 @@
                 {{ compilation.description }}
             </div>
 
-            <div class="like">
-                <a href="{{ path('compilation_like', {compilation: compilation.id}) }}">
-                    {%  for user in compilation.likes %}
-                        {% if user.id is same as app.user.id %}
-                            <ion-icon name="heart"></ion-icon>
-                        {% endif %}
-                    {% else %}
-                        <ion-icon name="heart-outline"></ion-icon>
-                    {% endfor %}
-                </a>
-            </div>
+
         </section>
 
         <section class="compilation-gallery">

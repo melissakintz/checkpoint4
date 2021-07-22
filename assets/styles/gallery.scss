@@ -1,7 +1,21 @@
 .compilation-header{
-  margin: 10px;
+  margin-left: 6rem;
 }
 
 .compilation-header .compilation-title{
   font-size: 10rem;
+}
+
+.compilation-gallery{
+}
+
+.interactions{
+  display: flex;
+  justify-content: flex-end;
+  background: #fff ;
+  padding: 5px;
+  border-radius: 11px;
+  margin-top: 1rem;
+  margin-left: 92%;
+  padding-right: 1rem;
 }

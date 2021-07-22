@@ -4,8 +4,6 @@ body{
 
 .profil-header{
   display: flex;
-  justify-content: center;
-  flex-direction: column;
   border-radius: 1.5rem;
   background-color: white;
   width: 90%;
@@ -13,8 +11,8 @@ body{
 }
 
 .profil-avatar{
-  overflow: visible;
-  width: 50%;
+  justify-self: flex-start;
+  width: 51%;
 }
 
 .profil-avatar img{
@@ -23,16 +21,14 @@ body{
 }
 
 .profil-content{
-  display: flex;
-  justify-content: flex-end;
-  align-content: flex-start;
-  overflow: visible;
+  align-self: center;
 }
 
 .profil-pseudo{
   font-weight: bold;
   font-size: 1.875rem;
   line-height: 2.25rem;
+  padding-bottom: 2rem;
 }
 
 .profil-description{
@@ -40,7 +36,11 @@ body{
   line-height: 1.25rem;
 }
 
-.collections p{
+.collections p, .likes p{
   text-align: center;
   font-size: 3rem;
  }
+
+.collections, .likes{
+  margin: 3rem;
+}
