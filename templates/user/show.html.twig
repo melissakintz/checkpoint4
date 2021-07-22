@@ -11,6 +11,15 @@
 {% block body %}
     {% include './components/_sidenav.thml.twig' %}
     <div class="contain">
+        <section class="interactions">
+            <div class="like">
+                {% if user.id is same as app.user.id %}
+                    <a href="{{ path('user_edit', {id: user.id}) }}">
+                        <ion-icon name="create-outline" size="large"></ion-icon>
+                    </a>
+                {% endif %}
+            </div>
+        </section>
         <section class="profil-header">
             <div class="profil-avatar">
                 <img src="{{ asset('uploads/' ~user.avatar) }}" alt="image profil">
@@ -22,7 +31,7 @@
         </section>
 
         <section class="collections">
-            <p>Vos mood board</p>
+            <p>Mes collections</p>
             <div class="collection-container">
                 {% for compilation in user.compilations %}
                     <div class="collection">
@@ -44,7 +53,7 @@
         </section>
 
         <section class="likes">
-            <p>Vos likes</p>
+            <p>Mes likes</p>
             <div class="collection-container">
                 {% for compilation in user.likedCompilations %}
                     <div class="collection">

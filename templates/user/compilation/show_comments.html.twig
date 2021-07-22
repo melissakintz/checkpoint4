@@ -7,6 +7,14 @@
 {% block body %}
     {% include './components/_sidenav.thml.twig' %}
     <div class="contain">
+        <section class="interactions">
+            <div class="retour">
+                <a href="{{ path('compilation_show', {id: compilation.id}) }}">
+                    <ion-icon name="chevron-back-outline" size="large"></ion-icon>
+                </a>
+            </div>
+        </section>
+
         <section class="compilation-header">
             <div class="compilation-title">
                 {{ compilation.title }}

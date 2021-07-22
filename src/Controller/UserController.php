@@ -67,9 +67,22 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //manage avatar
+            if(!empty($form->get('avatar')->getData())){
+                $avatar = $form->get('avatar')->getData();
+
+                // On génère un nouveau nom de fichier
+                $fichier = md5(uniqid()).'.'.$avatar->guessExtension();
+                // On copie le fichier dans le dossier uploads
+                $avatar->move(
+                    $this->getParameter('upload_directory'),
+                    $fichier);
+                $user->setAvatar($fichier);
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('user_show', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('user/edit.html.twig', [
