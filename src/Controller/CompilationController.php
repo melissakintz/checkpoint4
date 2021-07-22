@@ -147,6 +147,6 @@ class CompilationController extends AbstractController
 
         $this->getDoctrine()->getManager()->flush();
 
-        return $this->redirectToRoute('compilation_show', ['id' => $compilation->getId()]);
+        return $this->json(['isLiked' => $this->getUser()->isLiked($compilation)]);
     }
 }
