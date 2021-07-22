@@ -4,35 +4,38 @@
 
 {% block body %}
     {% include './components/_sidenav.thml.twig' %}
+
+    <!-- interactions -->
     <section class="interactions">
+        <div class="retour">
+            <a href="{{ path('user_show', {id: compilation.creator.id}) }}">
+                <ion-icon name="chevron-back-outline" size="large"></ion-icon>
+            </a>
+        </div>
         <div class="like">
             <a href="{{ path('compilation_like', {compilation: compilation.id}) }}" id="like">
-                {%  for user in compilation.likes %}
-                    {% if user.id is same as app.user.id %}
-                        <ion-icon name="heart" size="large"></ion-icon>
+                    {% if app.user %}
+                        <ion-icon name="{{ app.user.isLiked(compilation) ? 'heart' : 'heart-outline' }}" size="large"></ion-icon>
                     {% endif %}
-                {% else %}
-                    <ion-icon name="heart-outline" size="large"></ion-icon>
-                {% endfor %}
             </a>
         </div>
-
-        <div class="commentary">
-            <a href="{{ path('compilation_comments', {compilation: compilation.id}) }}">
-                <ion-icon name="chatbubbles-outline" size="large"></ion-icon>
-            </a>
+            <div class="commentary">
+                <a href="{{ path('compilation_comments', {compilation: compilation.id}) }}">
+                    <ion-icon name="chatbubbles-outline" size="large"></ion-icon>
+                </a>
+            </div>
+        <div>
+            {% if compilation.creator.id is same as app.user.id or is_granted("ROLE_ADMIN")%}
+                {% include '/user/compilation/_delete_form.html.twig' %}
+            {% endif %}
         </div>
     </section>
+    <!-- ./ interactions -->
 
     <div class="contain">
         {%  include './components/_compilation_details.html.twig' %}
 
-        <section class="flex flex-wrap">
-            <!-- display pictures-->
-            {% for picture in compilation.pictures %}
-                <div><img src="{{ asset('uploads/'~picture ) }}" alt="image"></div>
-            {% endfor %}
-            <!-- ./display pictures-->
+        <section class="flex flex-wrap m-0">
 
             <!--display youtube -->
             {% for youtube in compilation.youtubeLinks %}
@@ -42,9 +45,15 @@
             {% endfor %}
             <!-- ./display youtube-->
 
+            <!-- display pictures-->
+            {% for picture in compilation.pictures %}
+                <div><img src="{{ asset('uploads/'~picture ) }}" alt="image" class="max-w-lg"></div>
+            {% endfor %}
+            <!-- ./display pictures-->
+
             <!--display spotify -->
             {% for spotify in compilation.spotifyLinks %}
-                <iframe src="https://open.spotify.com/embed/track/{{ spotify }}?theme=0" width="20%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                <iframe src="https://open.spotify.com/embed/track/{{ spotify }}?theme=0" width="50%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             {% endfor %}
             <!-- ./display spotify-->
         </section>

@@ -41,6 +41,8 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            $user->setAvatar('avatar-default.png');
+            $user->setRoles(['ROLE_USER']);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
@@ -51,11 +53,11 @@ class RegistrationController extends AbstractController
                     ->from(new Address($this->getParameter('mailer_from'), $this->getParameter('mailer_name')))
                     ->to($user->getEmail())
                     ->subject('Please Confirm your Email')
-                    ->htmlTemplate('user/auth/confirmation_email.html.twig')
+                    ->htmlTemplate('admin/emails/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('app_login');
+            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('user/auth/register.html.twig', [

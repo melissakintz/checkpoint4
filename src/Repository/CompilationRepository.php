@@ -28,7 +28,7 @@ class CompilationRepository extends ServiceEntityRepository
             ->where('c.creator != :user')
             ->andWhere('c.private = false')
             ->setParameter('user', $user )
-            ->setMaxResults(10)
+            ->setMaxResults(4)
             ->getQuery()
             ->getResult();
     }

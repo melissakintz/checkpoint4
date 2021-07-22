@@ -17,7 +17,7 @@
                 <div class="w-full max-w-6xl mx-auto pb-5">
                     <div class="-mx-3 md:flex items-center">
                         <div class="px-3 md:w-2/3 mb-10 md:mb-0">
-                            <h1 class="text-4xl md:text-6xl font-bold mb-5 leading-tight">Ta collection board, <br class="hidden md:block">partout <br class="hidden md:block">quand tu veux.</h1>
+                            <h1 class="text-4xl md:text-6xl font-bold mb-5 leading-tight">Ton collection board, <br class="hidden md:block">partout <br class="hidden md:block">quand tu veux.</h1>
                             <h3 class="text-gray-600 mb-7 leading-tight">Ici, tu pourra créer des collections avec non seulement des images, mais aussi des vidéos et des musiques.</h3>
                             <div>
                                 <span class="inline-block w-40 h-1 rounded-full bg-blue-600"></span>
@@ -29,8 +29,28 @@
                 </div>
             </div>
         </div>
+
         <div class="home-right">
-            {{ include("./user/auth/login.html.twig") }}
+            {% if app.user %}
+                <!-- login -->
+                <div class="relative py-3 sm:max-w-xl sm:mx-auto mt-8">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
+                    </div>
+                    <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+                        <div class="max-w-md mx-auto">
+                            <div class="divide-y divide-gray-200">
+                                <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                                    <p>Tu es connecté! Direction <a href="{{ path('board') }}" class="text-blue-900 font-bold hover:text-blue-600"> le board !</a></p>
+                                    <span class="text-sm">ou bien ...  <a href="{{ path('app_logout') }}" class="hover:text-blue-600">déconnexion</a> </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./login -->
+            {% else %}
+                {{ include("./user/auth/login.html.twig") }}
+            {% endif %}
         </div>
     </section>
 {% endblock %}

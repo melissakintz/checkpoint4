@@ -29,11 +29,6 @@
                                     <div class="text-red-500">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                                 {% endif %}
 
-                                {% if app.user %}
-                                    <div class="mb-3 text-red-500">
-                                        Tu es connecté en tant que {{ app.user.username }}. <a href="{{ path('app_logout') }}" class="text-black">Déconnexion</a>
-                                    </div>
-                                {% endif %}
                             </div>
                         </div>
                     </div>

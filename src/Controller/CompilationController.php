@@ -13,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/compilation", name="compilation_"))
@@ -31,6 +32,7 @@ class CompilationController extends AbstractController
 
     /**
      * @Route("/new", name="new", methods={"GET","POST"})
+     * @isGranted("ROLE_USER")
      */
     public function new(Request $request, Extractor $extractor): Response
     {
@@ -80,7 +82,7 @@ class CompilationController extends AbstractController
             $entityManager->persist($compilation);
             $entityManager->flush();
 
-            return $this->redirectToRoute('compilation_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('compilation_show', ['id' => $compilation->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('user/compilation/new.html.twig', [
@@ -101,6 +103,7 @@ class CompilationController extends AbstractController
 
     /**
      * @Route("/{compilation}/comments", name="comments", methods={"GET", "POST"})
+     * @isGranted("ROLE_USER")
      */
     public function comments(Compilation $compilation, Request $request): Response
     {
@@ -153,6 +156,7 @@ class CompilationController extends AbstractController
 
     /**
      * @Route("/{id}", name="delete", methods={"POST"})
+     * @isGranted("ROLE_USER")
      */
     public function delete(Request $request, Compilation $compilation): Response
     {
@@ -162,13 +166,14 @@ class CompilationController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('board', [], Response::HTTP_SEE_OTHER);
     }
 
     /**
      * @param Compilation $compilation
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return Response
      * @Route("/like/{compilation}", name="like")
+     * @isGranted("ROLE_USER")
      */
     public function like(Compilation $compilation): Response
     {
