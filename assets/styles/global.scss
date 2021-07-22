@@ -9,13 +9,14 @@ input{
 }
 
 .contain{
-  margin-left: 18rem;
+  margin-left: 5rem;
 }
 
 .collection-container{
-  display: inline-flex;
-  justify-items: center;
-  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 5rem;
 }
 
 .card{
@@ -25,18 +26,25 @@ input{
   border-radius: 10px;
 }
 
-.collection .card-1{
-  background: #8f9acd;
+.card-1{
+  transform: rotate(4deg) ;
+  background: rgba(216, 218, 224, 0.44);
 }
-.collection .card-2{
+.card-2{
   transform: rotate(12deg) ;
-  background: white;
+  background: rgba(217, 222, 211, 0.81);
 }
-.collection .card-3{
-  transform: rotate(20deg);
-  background: #B0413E;
+.card-3{
+  transform: rotate(-7deg);
+  background: rgba(81, 86, 199, 0.36);
+}
+
+.card-4{
+  background: rgba(226, 187, 255, 0.77);
 }
 
 .card-title{
-  position: relative;
+  z-index: 5;
+  margin-left: -12rem;
+  margin-top: 5rem;
 }
