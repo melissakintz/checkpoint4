@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} Commentaires
+{% endblock %}
+
+{% block body %}
+    {% include './components/_sidenav.thml.twig' %}
+    <div class="contain">
+        <section class="compilation-header">
+            <div class="compilation-title">
+                {{ compilation.title }}
+            </div>
+            <div class="compilation-description">
+                {{ compilation.description }}
+            </div>
+        </section>
+
+        <section class="comments">
+            {% for comment in comments %}
+                {{ comment.content }}
+            {% endfor %}
+        </section>
+
+        <section class="comments-add">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button class="btn"><ion-icon name="send-outline" size="large"></ion-icon></button>
+            {{ form_end(form) }}
+        </section>
+    </div>
+{% endblock %}
